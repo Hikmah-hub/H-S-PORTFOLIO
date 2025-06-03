@@ -1,0 +1,707 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hikmah Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.98/build/spline-viewer.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <style>
+    body {
+		html {
+    scroll-behavior: smooth;
+  }
+      font-family: 'Bebas Neue', 'Gotham', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
+    }
+	  a.custom-hover {
+      background-color: #071a2f;
+      color: #d9e6f2;
+    }
+    /* Hamburger styles */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 24px;
+      height: 24px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      box-sizing: border-box;
+      z-index: 50;
+    }
+    .hamburger div {
+      width: 24px;
+      height: 3px;
+      background: #071a2f;
+      border-radius: 2px;
+      transition: all 0.3s linear;
+      position: relative;
+      transform-origin: 1px;
+    }
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(45deg);
+    }
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+    /* Navigation styles */
+    #primary-navigation {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      position: absolute;
+      top: 60px;
+      right: 1rem;
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+      z-index: 40;
+      min-width: 150px;
+    }
+    #primary-navigation.open {
+      display: flex;
+    }
+    #primary-navigation a {
+      color: #071a2f;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    #primary-navigation a.active,
+    #primary-navigation a:hover {
+      background-color: #071a2f;
+      color: white;
+    }
+    /* Desktop nav */
+    @media (min-width: 768px) {
+      .hamburger {
+        display: none;
+      }
+      #primary-navigation {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
+        min-width: auto;
+      }
+      #primary-navigation a {
+        color: #071a2f;
+        border: 1px solid #071a2f;
+        padding: 0.5rem 1.5rem;
+        font-weight: normal;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      #primary-navigation a.active {
+        background-color: #071a2f;
+        color: white;
+        font-weight: 600;
+      }
+      #primary-navigation a:hover {
+        background-color: #071a2f;
+        color: white;
+      }
+      #primary-navigation .icon-link {
+        border: 1px solid #071a2f;
+        padding: 0.5rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      #primary-navigation .icon-link:hover {
+        background-color: #071a2f;
+        color: white;
+      }
+		
+		.portfolio-title {
+      font-weight: 800;
+      user-select: none;
+      line-height: 1;
+    }	
+	  
+	  .background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		}
+	  .form-section {
+            background-color: #071a2f;
+            color: #071a2f;
+            padding: 32px;
+            border-radius: 8px;
+            margin: 16px;
+        }
+        .form-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        .form-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .form-section input {
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+        }
+        .form-section button {
+            background-color: #ffff00;
+            color: #000000;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+        }
+	.yellow-circle {
+  position: absolute;
+  bottom: -2200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1700px;
+  height: 400px;
+  z-index: 1; /* Di belakang konten utama */
+  pointer-events: none;
+}
+		footer.copyright {
+      background-color: #a6e6f7;
+      color: #071a2f;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 14px;
+      user-select: none;
+	justify-content: center;
+    }
+		@media (max-width: 640px) {
+      footer.copyright {
+        font-size: 12px;
+        padding: 0.75rem 0;
+      }
+    }
+		.eye {
+  transition: transform 0.1s linear;
+}
+		@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 153, 255, 0.4),
+                0 0 10px rgba(0, 153, 255, 0.3),
+                0 0 15px rgba(0, 153, 255, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(0, 153, 255, 0.6),
+                0 0 20px rgba(0, 153, 255, 0.4),
+                0 0 30px rgba(0, 153, 255, 0.3);
+  }
+}
+
+.glow-effect {
+  animation: glow 2s ease-in-out infinite alternate;
+  border-radius: 12px;
+}
+		
+		.glow-effect:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 
+        0 0 10px rgba(255, 107, 53, 0.6),
+        0 0 20px rgba(255, 154, 86, 0.7),
+        0 0 40px rgba(255, 107, 53, 0.8),
+        0 0 80px rgba(255, 154, 86, 0.6);
+    filter: brightness(1.1);
+}
+
+  </style>
+</head>
+
+<body class="text-[#ffffff] min-h-screen flex flex-col">
+  <header class="flex items-center justify-between px-6 py-5 max-w-7xl mx-auto relative">
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-navigation" type="button">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
+    <nav id="primary-navigation" aria-label="Primary Navigation" class="text-[20px] font-normal">
+      <a href="#landing-page"
+   class="active bg-[#071a2f] text-white border-2 border-[#ffffff] rounded-full px-10 py-6 inline-block shadow-md leading-none 
+          hover:bg-black hover:text-[#ffffff] hover:shadow-lg hover:scale-105 transition duration-300 ease-in-out">
+   Home
+</a>
+
+      <a href="#resume" class="border border-[#071a2f] rounded-full px-10 py-6 inline-block shadow-md leading-none hover:bg-[#071a2f] hover:text-[#ffffff] hover:shadow-lg hover:scale-105 transition duration-300 ease-in-out">
+        About
+      </a>
+      <a href="#project" class="border border-[#071a2f] rounded-full px-10 py-6 inline-block shadow-md leading-none hover:bg-[#071a2f] hover:text-[#ffffff] hover:shadow-lg hover:scale-105 transition duration-300 ease-in-out">
+        Projects
+      </a>
+      <a
+        aria-label="Contact Email"
+        href="#"
+        class="icon-link border border-[#071a2f] rounded-full p-6 inline-flex shadow-md items-center justify-center hover:bg-[#071a2f] hover:text-[#ffffff] hover:shadow-lg hover:scale-105 transition"
+      >
+        <i class="fas fa-envelope text-[20px]"></i>
+      </a>
+    </nav>
+  </header>
+
+  <!-- Hero Section with Spline and Text -->
+  <div class="relative w-full h-[93vh] overflow-hidden flex items-center justify-center">
+    <!-- Background Text -->
+    <h1 class="portfolio-title absolute text-[1000px] md:text-[450px] font-extrabold text-[#071a2f] z-0 select-none" id="landing-page">
+      PORTFOLIO
+    </h1>
+	  
+    <!-- Spline Viewer -->
+    <spline-viewer
+      class="background"
+      url="https://prod.spline.design/IwNhfuKT0A329A1B/scene.splinecode"
+    ></spline-viewer>
+  </div>
+
+  <main class="bg-[#071a2f] text-white min-h-screen flex flex-col items-center p-4">
+    <div class="max-w-[100%] w-full">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-center gap-10 md:gap-20">
+        <div id="resume" class="flex-1 max-w-[100%]">
+          <h1 class="text-[80px] font-extrabold leading-[1.1] flex items-center gap-9 select-none mt-10">
+            <span>My Resume!</span>
+            <svg
+              aria-hidden="true"
+              class="w-10 h-10 text-white cursor-pointer"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="M13 11l4 4m0 0l-4 4m4-4H7"></path>
+            </svg>
+          </h1>
+          <p class="mt-1 font-semibold text-white text-[20px]">Hi! I'm Hikmah Bachtiarima Dewi</p>
+          <p class="mt-2 text-[18px] leading-[1.4] font-light text-[#d9d9d9] arial"> A final-year Multimedia student with a strong passion for photography, especially in capturing meaningful and emotional human moments.&nbsp;&nbsp;</p>
+          <p class="mt-2 text-[18px] leading-[1.4] font-light text-[#d9d9d9] arial">My academic background has provided me with a solid foundation in multimedia production, creative design, and digital content creation.<br>
+            Experienced in various organizational and event committees, primarily in documentation, design, publication, and information divisions. <br>
+            Highly independent yet continuously improving communication and teamwork skills.&nbsp; Currently building a creative portfolio
+          as a stepping stone </p>
+<p class="mt-2 text-[18px] leading-[1.4] font-light text-[#d9d9d9]">
+          toward a career in the digital creative industry. I am eager to explore opportunities in photography, creative media, and visual communication, 
+          <br />
+            where I can grow further, contribute meaningfully, and bring fresh perspectives to any team I join.
+            <br />
+          </p>
+          <div class="mt-6 space-y-3 text-[12px] font-light text-[#d9d9d9]">
+            <div class="flex items-center gap-2">
+              <div class="bg-blue-300 rounded-full p-2 flex items-center justify-center w-6 h-6">
+                <i class="fas fa-mobile-alt text-[#071a2f] text-[20px]"></i>
+              </div>
+              <span>081803919361</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="bg-blue-300 rounded-full p-2 flex items-center justify-center w-6 h-6">
+                <i class="fas fa-envelope text-[#071a2f] text-[20px]"></i>
+              </div>
+              <span>hbachtiarimadewi@gmail.com</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="bg-blue-300 rounded-full p-2 flex items-center justify-center w-6 h-6">
+                <i class="fas fa-map-marker-alt text-[#071a2f] text-[20px]"></i>
+              </div>
+              <span>Cinta Asih, Kota Bandung</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="bg-blue-300 rounded-full p-2 flex items-center justify-center w-6 h-6">
+                <img
+                  alt="Behance icon letter B in white on blue background"
+                  class="w-3 h-3"
+                  height="12"
+                  src="https://storage.googleapis.com/a1aa/image/e815f4af-f17f-47e0-bb71-e5eb07de7e34.jpg"
+                  width="12"
+                />
+              </div>
+              <span>www.linkedin.com/in/hikmah-b18292271</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex-shrink-0 rounded-lg bg-[#7db9e8] p-2 gap-9 max-w-[410px] md:max-w-[450px] mt-10 hover:-translate-y-1 hover:scale-105">
+          <div class="bg-white rounded-md overflow-hidden">
+            <img
+              alt="Portrait of a young woman wearing glasses and purple jacket making peace signs with both hands, inside a stylized blue window frame"
+              class="w-full h-auto block glow-effect"
+              height="600"
+              src="C:\Users\Asus\Downloads\DSC_0681.JPG"
+              width="600"
+            />
+          </div>
+        </div>
+      </div>
+      <body class="bg-white p-4">
+  <div class="mt-10 mb-10 bg-[#d9e6f2] rounded-lg p-6 relative flex flex-col md:flex-row gap-8" style="min-height: 320px">
+   <div class="flex flex-col items-center md:items-start gap-6 md:gap-8 max-w-[60px]">
+    <div aria-label="Vertical toolbar with icons" class="bg-white border border-[#1a3e7a] rounded-lg p-2 w-14 h-500 flex flex-col">
+     <button aria-label="Play icon" class="border-b border-[#1a3e7a] flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5">
+      <i class="fas fa-play text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+     <button aria-label="Forward icon" class="border-b border-[#1a3e7a] flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5]">
+      <i class="fas fa-forward text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+     <button aria-label="Pen icon" class="border-b border-[#1a3e7a] flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5]">
+      <i class="fas fa-pen text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+     <button aria-label="Text icon" class="border-b border-[#1a3e7a] flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5]">
+      <i class="fas fa-font text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+     <button aria-label="Eyedropper icon" class="border-b border-[#1a3e7a] flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5]">
+      <i class="fas fa-eye-dropper text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+     <button aria-label="Magnifying glass icon" class="border-b border-[#1a3e7a] flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5]">
+      <i class="fas fa-search text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+     <button aria-label="Crop icon" class="flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5]">
+      <i class="fas fa-crop text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+		<button aria-label="Forward icon" class="border-b border-[#1a3e7a] flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5]">
+      <i class="fas fa-stop text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+     <button aria-label="Pen icon" class="border-b border-[#1a3e7a] flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5]">
+      <i class="fas fa-bookmark text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+		<button aria-label="Crop icon" class="flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5]">
+      <i class="fas fa-circle text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+		<button aria-label="Forward icon" class="border-b border-[#1a3e7a] flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5]">
+      <i class="fas fa-pause text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+		<button aria-label="Forward icon" class="border-b border-[#1a3e7a] flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5]">
+      <i class="fas fa-brush text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+		<button aria-label="Forward icon" class="border-b border-[#1a3e7a] flex items-center justify-center p-2 cursor-pointer hover:bg-[#e1e9f5]">
+      <i class="fas fa-star text-[#1a3e7a] text-lg">
+      </i>
+     </button>
+    </div>
+   </div>
+   <div class="flex-1 max-w-full md:max-w-none">
+    <div class="mb-8 max-w-md mx-auto md:mx-0">
+     <h2 class="inline-block border border-[#1a3e7a] rounded-full px-6 py-1 text-[#1a3e7a] font-semibold text-[22px]">
+      Education
+     </h2>
+     <p class="mt-3 text-[18px] font-semibold text-[#1a3e7a]">
+      2020 - 2023:
+     </p>
+     <p class="text-[18px] font-light text-[#1a3e7a]">
+      SMKN 15 Bandung - Multimedia
+     </p>
+     <p class="mt-4 text-[18px] font-semibold text-[#1a3e7a]">
+      2023 - Now:
+     </p>
+     <p class="text-[18px] font-light text-[#1a3e7a]">
+      Universitas Pendidikan Indonesia - Pendidikan Multimedia
+     </p>
+    </div>
+    <div class="max-w-md mx-auto md:mx-0">
+     <h2 class="inline-block border border-[#1a3e7a] rounded-full px-6 py-1 text-[#1a3e7a] font-semibold text-[22px]">
+      Experience
+     </h2>
+     <ul class="mt-4 space-y-4 text-[#1a3e7a] text-[18px] font-light">
+      <li class="flex items-start gap-3">
+       <span class="text-yellow-300 mt-[5px] select-none text-xl">
+        ✦
+       </span>
+       <div>
+        <p class="font-semibold">
+         2025 - Now:
+        </p>
+        <p>
+         HIMAPEDIA
+        </p>
+       </div>
+      </li>
+      <li class="flex items-start gap-3">
+       <span class="text-yellow-300 mt-[5px] select-none text-xl">
+        ✦
+       </span>
+       <div>
+        <p class="font-semibold">
+         2025 - Now:
+        </p>
+        <p>
+         Tutorial UPI
+        </p>
+       </div>
+      </li>
+      <li class="flex items-start gap-3">
+       <span class="text-yellow-300 mt-[5px] select-none text-xl">
+        ✦
+       </span>
+       <div>
+        <p class="font-semibold">
+         September 2024
+        </p>
+        <p>
+         Tutorial PAI UPI
+        </p>
+       </div>
+      </li>
+      <li class="flex items-start gap-3">
+       <span class="text-yellow-300 mt-[5px] select-none text-xl">
+        ✦
+       </span>
+       <div>
+        <p class="font-semibold">
+         Agustus 2024
+        </p>
+        <p>
+         Pelatihan Foto dan Video Editing
+        </p>
+       </div>
+      </li>
+		 <li class="flex items-start gap-3">
+       <span class="text-yellow-300 mt-[5px] select-none text-xl">
+        ✦
+       </span>
+       <div>
+        <p class="font-semibold">
+         Agustus 2024
+        </p>
+        <p>
+         Sertifikasi Animator Muda
+        </p>
+       </div>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div class="flex-1 bg-white rounded-lg p-6 flex flex-col justify-between max-h-[480px] md:max-h-full" style="min-height: 320px">
+    <div>
+     <h2 class="bg-[#d9e6f2] border border-[#1a3e7a] rounded-full py-2 px-12 text-[#1a3e7a] font-semibold text-[16px] text-center w-max mx-auto md:mx-0 mb-4">
+      Technical Skills
+     </h2>
+     <div class="space-y-5">
+      <div class="flex items-center gap-4">
+       <div class="bg-[#1a3e7a] rounded-lg p-3 w-14 h-14 flex items-center justify-center text-white font-bold text-[20px] cursor-default select-none">
+        Ps
+       </div>
+       <input aria-label="Photoshop skill percentage" class="w-full h-3 rounded-full accent-[#1a3e7a]" max="100" min="0" type="range" value="85"/>
+       <span class="w-10 text-right text-[#1a3e7a] font-semibold text-sm select-none">
+        85%
+       </span>
+      </div>
+      <div class="flex items-center gap-4">
+       <div class="bg-[#1a3e7a] rounded-lg p-3 w-14 h-14 flex items-center justify-center text-white font-bold text-[20px] cursor-default select-none">
+        Ai
+       </div>
+       <input aria-label="Illustrator skill percentage" class="w-full h-3 rounded-full accent-[#1a3e7a]" max="100" min="0" type="range" value="80"/>
+       <span class="w-10 text-right text-[#1a3e7a] font-semibold text-sm select-none">
+        80%
+       </span>
+      </div>
+      <div class="flex items-center gap-4">
+       <div class="bg-[#1a3e7a] rounded-lg p-3 w-14 h-14 flex items-center justify-center text-white font-bold text-[20px] cursor-default select-none">
+        Lr
+       </div>
+       <input aria-label="Lightroom skill percentage" class="w-full h-3 rounded-full accent-[#1a3e7a]" max="100" min="0" type="range" value="75"/>
+       <span class="w-10 text-right text-[#1a3e7a] font-semibold text-sm select-none">
+        75%
+       </span>
+      </div>
+      <div class="flex items-center gap-4">
+       <div class="bg-[#1a3e7a] rounded-lg p-3 w-14 h-14 flex items-center justify-center text-white font-bold text-[16px] cursor-default select-none">
+        Pr
+       </div>
+       <input aria-label="Premiere Pro skill percentage" class="w-full h-3 rounded-full accent-[#1a3e7a]" max="100" min="0" type="range" value="70"/>
+       <span class="w-10 text-right text-[#1a3e7a] font-semibold text-sm select-none">
+        70%
+       </span>
+      </div>
+      <div class="flex items-center gap-4">
+       <div class="bg-[#1a3e7a] rounded-lg p-3 w-14 h-14 flex items-center justify-center text-white font-bold text-[16px] cursor-default select-none">
+        Ae
+       </div>
+       <input aria-label="After Effects skill percentage" class="w-full h-3 rounded-full accent-[#1a3e7a]" max="100" min="0" type="range" value="65"/>
+       <span class="w-10 text-right text-[#1a3e7a] font-semibold text-sm select-none">
+        65%
+       </span>
+      </div>
+     </div>
+    </div>
+    <div>
+     <div class="bg-[#d9e6f2] border border-[#1a3e7a] rounded-full py-2 px-12 text-[#1a3e7a] font-semibold text-[16px] text-center w-max mx-auto md:mx-0 mt-6 mb-4">
+      Hobbies
+     </div>
+     <div aria-label="Hobbies icons" class="flex flex-wrap justify-center md:justify-start gap-5 max-w-full">
+      <img alt="Stack of books icon in blue and white" class="w-10 h-10" height="40" src="https://storage.googleapis.com/a1aa/image/48c1db73-15ec-42d5-6184-68e6d1134f01.jpg" width="40"/>
+      <img alt="Headphones icon in blue and white" class="w-10 h-10" height="40" src="https://storage.googleapis.com/a1aa/image/04ca6a6d-4af1-4682-15de-122192a912ab.jpg" width="40"/>
+      <img alt="Camera icon in blue and white" class="w-10 h-10" height="40" src="https://storage.googleapis.com/a1aa/image/957929d8-bcb1-487c-3242-e4d3a5802aac.jpg" width="40"/>
+      <img alt="Sneaker shoe icon in blue and white" class="w-10 h-10" height="40" src="https://storage.googleapis.com/a1aa/image/17786420-1207-4373-368a-e3399b20e1ec.jpg" width="40"/>
+      <img alt="Old style TV icon in blue and white" class="w-10 h-10" height="40" src="https://storage.googleapis.com/a1aa/image/7b0e9422-eb46-431f-696b-1cc871208962.jpg" width="40"/>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  </main>
+
+  <main class="bg-[#FFFFFF] min-h-screen flex flex-col items-center justify-center p-4 relative">
+    <!-- Top left yellow shape with #3Oua text -->
+    <div class="absolute top-0 left-0 w-40 h-40 bg-[#fff200] rounded-br-full flex items-center justify-center z-10" id="project">
+      <span class="text-black top-[-10px] left-[-10px] font-semibold text-[30px] select-none">PROJECTS</span>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-5xl w-full p-6">
+    <!-- Design -->
+    <div class="flex flex-col items-center space-y-3">
+      <div class="w-28 h-28 shadow-md rounded-xl bg-blue-400 flex items-center justify-center hover:shadow-lg hover:scale-105">
+		  <a href="photo-gallery.html" class="fas fa-pencil-ruler text-6xl text-white transition-all duration-300"></a>
+      </div>
+      <span class="text-black font-semibold text-base select-none text-center">Design</span>
+    </div>
+    <!-- 3D Render -->
+    <div class="flex flex-col items-center space-y-3">
+      <div class="w-28 h-28 shadow-md rounded-xl bg-[#7EEEA4] flex items-center justify-center hover:shadow-lg hover:scale-105">
+        <a href="3d-gallery.html" class="fas fa-cube text-6xl text-white transition-all duration-300"></a>
+      </div>
+      <span class="text-black font-semibold text-base select-none text-center">3D Render</span>
+    </div>
+    <!-- Photography -->
+    <div class="flex flex-col items-center space-y-3">
+      <div class="w-28 h-28 shadow-md rounded-xl bg-[#F7824D] flex items-center justify-center hover:shadow-lg hover:scale-105">
+        <a href="photography-gallery.html" class="fas fa-camera text-6xl text-white transition-all duration-300"></a>
+      </div>
+      <span class="text-black font-semibold text-base select-none text-center">Photography</span>
+    </div>
+    <!-- Animasi -->
+    <div class="flex flex-col items-center space-y-3">
+      <div class="w-28 h-28 shadow-md rounded-xl bg-[#FFF152] flex items-center justify-center hover:shadow-lg hover:scale-105">
+        <a href="animation.html" class="fas fa-film text-6xl text-white transition-all duration-300"></a>
+      </div>
+      <span class="text-black font-semibold text-base select-none text-center">Animasi</span>
+    </div>
+	  </div>
+  </main>
+	
+
+<section class="relative mb-[-20px] py-12 px-4 w-full flex flex-col items-center overflow-hidden bg-[#A6E6F7] md:bg-transparent">
+  <!-- Konten Form -->
+  <div class="relative z-10 w-full max-w-auto bg-[#071a2f] rounded-lg shadow-lg p-6 mt-80">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center text-white">Don't hesitate to reach out👋</h2>
+    <form class="space-y-6">
+      <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+        <input
+          type="text"
+          placeholder="Your Name"
+          class="w-full p-3 text-black border border-gray-300 rounded"
+        />
+        <input
+          type="email"
+          placeholder="Your Email"
+          class="w-full p-3 text-black border border-gray-300 rounded"
+        />
+      </div>
+      <textarea
+        rows="5"
+        placeholder="Your Message"
+        class="w-full p-3 text-black border border-gray-300 rounded"
+      ></textarea>
+      <button
+        type="submit"
+        class="w-full bg-[#ffff00] text-black font-bold py-3 rounded hover:bg-yellow-500 hover:shadow-lg hover:scale-104 transition duration-300 ease-in-out">
+        Send Message
+      </button>
+    </form>
+  </div>
+	
+	<div class="absolute bottom-[120px] w-full h-full z-0 justify-center min-h-[500px] sm:min-h-[600px] md:min-h-[700px]" id="head">
+  <img src="../../Downloads/Group 1.png" width="1920" height="1460" alt="Head shape" class="minion" />
+
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex space-x-8" style="width:180px; height:180px;">
+    <div class="eye-container relative mt-[-40] w-[150px] h-[170px] bg-white rounded-full flex items-center justify-center">
+      <div class="eye w-[50px] h-[50px] bg-black rounded-full"></div>
+    </div>
+    <div class="eye-container relative mt-[-40] w-[150px] h-[170px] bg-white rounded-full flex items-center justify-center">
+      <div class="eye w-[50px] h-[50px] bg-black rounded-full"></div>
+    </div>
+</div>
+</div>
+</section>
+	
+	<footer class="copyright">
+    &copy; 2024 Hikmah Bachtiarima Dewi. All rights reserved.
+  </footer>
+
+	
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.getElementById('primary-navigation');
+
+    hamburger.addEventListener('click', () => {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+      hamburger.setAttribute('aria-expanded', !expanded);
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('open');
+    });
+
+    // Optional: close menu when clicking a nav link (for better UX)
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('open')) {
+          nav.classList.remove('open');
+          hamburger.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', false);
+        }
+      });
+    });
+  </script>
+	<script>
+const head = document.getElementById("head");
+const eyes = document.querySelectorAll(".eye");
+const maxDistance = 10; // max movement in px
+
+head.addEventListener("mousemove", (e) => {
+  eyes.forEach(eye => {
+    const rect = eye.parentElement.getBoundingClientRect();
+    const eyeCenterX = rect.left + rect.width / 2;
+    const eyeCenterY = rect.top + rect.height / 2;
+
+    const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+    const x = Math.cos(angle) * maxDistance;
+    const y = Math.sin(angle) * maxDistance;
+
+    eye.style.transform = `translate(${x}px, ${y}px)`;
+  });
+});
+
+head.addEventListener("mouseleave", () => {
+  eyes.forEach(eye => {
+    eye.style.transform = `translate(0, 0)`; // reset to center
+  });
+});
+</script>
+</body>
+</html>

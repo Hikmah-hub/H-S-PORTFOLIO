@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Foto Foto Karya Ku</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Bebas Neue', sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: #071a2f;
+      text-align: center;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .gallery-item {
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+      background: white;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgb(0 0 0 / 0.2);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .caption {
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      color: #071a2f;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="text-left mb-6">
+    <a href="index.html" class="inline-block bg-yellow-200 text-black px-6 py-2 rounded-full shadow-md hover:bg-yellow-300 transition duration-300">
+      ← Back to Home
+    </a>
+  </div>
+
+  <h2 class="text-black font-semibold text-[30px] mb-4 mt-10 text-center">3D</h2>
+
+  <div class="gallery">
+    <div class="gallery-item" onclick="openModal('https://www.youtube.com/embed/VIDEO_ID_1')">
+      <img src="https://storage.googleapis.com/a1aa/image/7e798d72-60ce-4f39-5345-d409758a207a.jpg" alt="Foto karya 1" />
+      <div class="caption">Foto Karya 1</div>
+    </div>
+    <div class="gallery-item" onclick="openModal('https://www.youtube.com/embed/VIDEO_ID_2')">
+      <img src="https://storage.googleapis.com/a1aa/image/b1b6bf58-3b8a-498d-bdd3-94a2efe0ce74.jpg" alt="Foto karya 2" />
+      <div class="caption">Foto Karya 2</div>
+    </div>
+    <!-- Tambahkan item lainnya dengan mengganti VIDEO_ID -->
+  </div>
+	
+	<h2 class="text-black font-semibold text-[30px] mb-4 mt-10 text-center">Logo</h2>
+
+  <div class="gallery">
+    <div class="gallery-item" onclick="openModal('https://www.youtube.com/embed/VIDEO_ID_1')">
+      <img src="https://storage.googleapis.com/a1aa/image/7e798d72-60ce-4f39-5345-d409758a207a.jpg" alt="Foto karya 1" />
+      <div class="caption">Foto Karya 1</div>
+    </div>
+    <div class="gallery-item" onclick="openModal('https://www.youtube.com/embed/VIDEO_ID_2')">
+      <img src="https://storage.googleapis.com/a1aa/image/b1b6bf58-3b8a-498d-bdd3-94a2efe0ce74.jpg" alt="Foto karya 2" />
+      <div class="caption">Foto Karya 2</div>
+    </div>
+    <!-- Tambahkan item lainnya dengan mengganti VIDEO_ID -->
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50">
+    <div class="relative w-full max-w-4xl mx-auto px-4">
+      <div class="relative pt-[56.25%]"> <!-- 16:9 aspect ratio -->
+        <iframe id="modal-video" class="absolute top-0 left-0 w-full h-full rounded-xl" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+      <button onclick="closeModal()" class="absolute top-2 right-4 text-white text-3xl font-bold hover:text-red-400">×</button>
+    </div>
+  </div>
+
+  <script>
+    function openModal(videoUrl) {
+      document.getElementById('modal-video').src = videoUrl + '?autoplay=1';
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-video').src = '';
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    // Optional: close modal by clicking outside the video
+    document.getElementById('modal').addEventListener('click', function (e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+
+
+  <!-- Modal -->
+  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+    <div class="relative">
+      <button onclick="closeModal()" class="absolute top-0 right-0 m-4 text-white text-3xl font-bold">&times;</button>
+      <img id="modalImage" src="" alt="Preview" class="max-w-full max-h-[90vh] rounded-lg shadow-xl">
+    </div>
+  </div>
+
+  <script>
+    function openModal(imageUrl) {
+      document.getElementById('modalImage').src = imageUrl;
+      document.getElementById('imageModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').classList.add('hidden');
+      document.getElementById('modalImage').src = '';
+    }
+  </script>
+
+</body>
+</html>
