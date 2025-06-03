@@ -117,27 +117,4 @@
     });
   </script>
 </body>
-
-
-  <!-- Modal -->
-  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
-    <div class="relative">
-      <button onclick="closeModal()" class="absolute top-0 right-0 m-4 text-white text-3xl font-bold">&times;</button>
-      <img id="modalImage" src="" alt="Preview" class="max-w-full max-h-[90vh] rounded-lg shadow-xl">
-    </div>
-  </div>
-
-  <script>
-    function openModal(imageUrl) {
-      document.getElementById('modalImage').src = imageUrl;
-      document.getElementById('imageModal').classList.remove('hidden');
-    }
-
-    function closeModal() {
-      document.getElementById('imageModal').classList.add('hidden');
-      document.getElementById('modalImage').src = '';
-    }
-  </script>
-
-</body>
 </html>
