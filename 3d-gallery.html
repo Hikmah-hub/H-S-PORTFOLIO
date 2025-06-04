@@ -167,6 +167,12 @@
       document.getElementById('imageModal').classList.add('hidden');
       document.getElementById('modalImage').src = '';
     }
+
+	  document.getElementById('modal').addEventListener('click', function (e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
   </script>
 
 </body>
